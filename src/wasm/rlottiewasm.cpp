@@ -41,6 +41,14 @@ public:
 
         return val(typed_memory_view(mWidth * mHeight * 4, mBuffer.get()));
     }
+
+    void setFillOpacity(std::string key, float val) {
+        mPlayer->setValue<rlottie::Property::FillOpacity>(key,
+                [&](const rlottie::FrameInfo& info) {
+                    return val;
+                });
+    }
+
     ~RlottieWasm() {}
 
 private:
@@ -105,5 +113,6 @@ EMSCRIPTEN_BINDINGS(rlottie_bindings)
         .constructor(&RlottieWasm::create)
         .function("load", &RlottieWasm::load, allow_raw_pointers())
         .function("frames", &RlottieWasm::frames)
-        .function("render", &RlottieWasm::render);
+        .function("render", &RlottieWasm::render)
+        .function("set_fill_opacity", &RlottieWasm::setFillOpacity);
 }
