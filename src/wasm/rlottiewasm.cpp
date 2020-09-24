@@ -42,17 +42,24 @@ public:
         return val(typed_memory_view(mWidth * mHeight * 4, mBuffer.get()));
     }
 
-    void setFillOpacity(std::string key, float val) {
+    void setFillOpacity(std::string key, float opacity) {
         mPlayer->setValue<rlottie::Property::FillOpacity>(key,
-        [&](const rlottie::FrameInfo& info) {
-                    return val;
+                [&](const rlottie::FrameInfo& info) {
+                    return opacity;
                 });
     }
 
-    void setStrokeOpacity(std::string key, float val) {
+    void setStrokeOpacity(std::string key, float opacity) {
         mPlayer->setValue<rlottie::Property::StrokeOpacity>(key,
                 [&](const rlottie::FrameInfo& info) {
-                    return val;
+            return opacity;
+        });
+    }
+
+    void setStrokeWidth(std::string key, float width) {
+        mPlayer->setValue<rlottie::Property::StrokeWidth>(key,
+                [&](const rlottie::FrameInfo& info) {
+                    return width;
                 });
     }
 
@@ -122,6 +129,7 @@ EMSCRIPTEN_BINDINGS(rlottie_bindings)
         .function("frames", &RlottieWasm::frames)
         .function("render", &RlottieWasm::render)
         .function("set_fill_opacity", &RlottieWasm::setFillOpacity)
-        .function("set_stroke_opacity", &RlottieWasm::setStrokeOpacity);
+        .function("set_stroke_opacity", &RlottieWasm::setStrokeOpacity)
+        .function("set_stroke_width", &RlottieWasm::setStrokeWidth);
 }
 #endif
