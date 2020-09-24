@@ -48,39 +48,18 @@ public:
                     return rlottie::Color(r, g, b);
                 });
     }
-
-    void setStrokeColor(std::string key, float r, float g, float b){
-        mPlayer->setValue<rlottie::Property::StrokeColor>(key,
-                [&](const rlottie::FrameInfo& info){
-                    return rlottie::Color(r, g, b);
-                });
-    }
-
-    void setTrPosition(std::string key, float x, float y){
-        mPlayer->setValue<rlottie::Property::TrPosition>(key,
-                [&](const rlottie::FrameInfo& info) {
-                        return rlottie::Point(x, y);
-                });
-    }
-
-    void setTrAnchor(std::string key, float x, float y){
-        mPlayer->setValue<rlottie::Property::TrAnchor>(key,
-                [&](const rlottie::FrameInfo& info) {
-                        return rlottie::Point(x, y);
-                });
-    }
-
-    void setTrScale(std::string key, float w, float h){
-        mPlayer->setValue<rlottie::Property::TrScale>("Shape Layer 1.Ellipse 1",
-                [&](const rlottie::FrameInfo& info) {
-                          return rlottie::Size(w, h);
-                 });
-    }
   
     void setFillOpacity(std::string key, float opacity) {
         mPlayer->setValue<rlottie::Property::FillOpacity>(key,
                 [&](const rlottie::FrameInfo& info) {
                     return opacity;
+                });
+    }
+
+    void setStrokeColor(std::string key, float r, float g, float b){
+        mPlayer->setValue<rlottie::Property::StrokeColor>(key,
+                [&](const rlottie::FrameInfo& info){
+                    return rlottie::Color(r, g, b);
                 });
     }
 
@@ -96,6 +75,27 @@ public:
                 [&](const rlottie::FrameInfo& info) {
                     return width;
                 });
+    }
+
+    void setTrAnchor(std::string key, float x, float y){
+        mPlayer->setValue<rlottie::Property::TrAnchor>(key,
+                [&](const rlottie::FrameInfo& info) {
+                        return rlottie::Point(x, y);
+                });
+    }
+
+    void setTrPosition(std::string key, float x, float y){
+        mPlayer->setValue<rlottie::Property::TrPosition>(key,
+                [&](const rlottie::FrameInfo& info) {
+                        return rlottie::Point(x, y);
+                });
+    }
+
+    void setTrScale(std::string key, float w, float h){
+        mPlayer->setValue<rlottie::Property::TrScale>(key,
+                [&](const rlottie::FrameInfo& info) {
+                          return rlottie::Size(w, h);
+                 });
     }
 
     void setTrRotation(std::string key, float degree) {
@@ -178,12 +178,13 @@ EMSCRIPTEN_BINDINGS(rlottie_bindings)
         .function("frames", &RlottieWasm::frames)
         .function("render", &RlottieWasm::render)
         .function("set_fill_color", &RlottieWasm::setFillColor)
-        .function("set_stroke_color", &RlottieWasm::setStrokeColor)
-        .function("set_tr_anchor", &RlottieWasm::setTrAnchor)
-        .function("set_tr_scale", &RlottieWasm::setTrScale)
         .function("set_fill_opacity", &RlottieWasm::setFillOpacity)
+        .function("set_stroke_color", &RlottieWasm::setStrokeColor)
         .function("set_stroke_opacity", &RlottieWasm::setStrokeOpacity)
         .function("set_stroke_width", &RlottieWasm::setStrokeWidth)
+        .function("set_tr_anchor", &RlottieWasm::setTrAnchor)
+        .function("set_tr_position", &RlottieWasm::setTrPosition)
+        .function("set_tr_scale", &RlottieWasm::setTrScale)
         .function("set_tr_rotation", &RlottieWasm::setTrRotation)
         .function("set_tr_opacity", &RlottieWasm::setTrOpacity);
 }
