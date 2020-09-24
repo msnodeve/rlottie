@@ -56,6 +56,13 @@ public:
                 });
     }
 
+    void setTrPosition(std::string key, float x, float y){
+        mPlayer->setValue<rlottie::Property::TrPosition>(key,
+                [&](const rlottie::FrameInfo& info) {
+                        return rlottie::Point(x, y);
+                });
+    }
+
     ~RlottieWasm() {}
 
 private:
@@ -122,5 +129,6 @@ EMSCRIPTEN_BINDINGS(rlottie_bindings)
         .function("frames", &RlottieWasm::frames)
         .function("render", &RlottieWasm::render)
         .function("set_fill_color", &RlottieWasm::setFillColor)
-        .function("set_stroke_color", &RlottieWasm::setStrokeColor);
+        .function("set_stroke_color", &RlottieWasm::setStrokeColor)
+        .function("set_tr_position", &RlottieWasm::setTrPosition);
 }
