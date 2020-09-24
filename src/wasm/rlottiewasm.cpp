@@ -69,6 +69,13 @@ public:
                         return rlottie::Point(x, y);
                 });
     }
+
+    void setTrScale(std::string key, float w, float h){
+        mPlayer->setValue<rlottie::Property::TrScale>("Shape Layer 1.Ellipse 1",
+                [&](const rlottie::FrameInfo& info) {
+                          return rlottie::Size(w, h);
+                 });
+    }
     ~RlottieWasm() {}
 
 private:
@@ -136,5 +143,6 @@ EMSCRIPTEN_BINDINGS(rlottie_bindings)
         .function("render", &RlottieWasm::render)
         .function("set_fill_color", &RlottieWasm::setFillColor)
         .function("set_stroke_color", &RlottieWasm::setStrokeColor)
-        .function("set_tr_anchor", &RlottieWasm::setTrAnchor);
+        .function("set_tr_anchor", &RlottieWasm::setTrAnchor)
+        .function("set_tr_scale", &RlottieWasm::setTrScale);
 }
