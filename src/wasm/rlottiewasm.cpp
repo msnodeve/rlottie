@@ -42,13 +42,20 @@ public:
         return val(typed_memory_view(mWidth * mHeight * 4, mBuffer.get()));
     }
 
-    std::string setFillColor(std::string key, float r, float g, float b){
+    void setFillColor(std::string key, float r, float g, float b){
         mPlayer->setValue<rlottie::Property::FillColor>(key,
                 [&](const rlottie::FrameInfo& info){
                     return rlottie::Color(r, g, b);
                 });
-        return key;
     }
+
+    void setStrokeColor(std::string key, float r, float g, float b){
+        mPlayer->setValue<rlottie::Property::StrokeColor>(key,
+                [&](const rlottie::FrameInfo& info){
+                    return rlottie::Color(r, g, b);
+                });
+    }
+
     ~RlottieWasm() {}
 
 private:
@@ -114,5 +121,6 @@ EMSCRIPTEN_BINDINGS(rlottie_bindings)
         .function("load", &RlottieWasm::load, allow_raw_pointers())
         .function("frames", &RlottieWasm::frames)
         .function("render", &RlottieWasm::render)
-        .function("set_fill_color", &RlottieWasm::setFillColor);
+        .function("set_fill_color", &RlottieWasm::setFillColor)
+        .function("set_stroke_color", &RlottieWasm::setStrokeColor);
 }
