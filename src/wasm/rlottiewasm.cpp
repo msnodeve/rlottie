@@ -44,6 +44,13 @@ public:
 
     void setFillOpacity(std::string key, float val) {
         mPlayer->setValue<rlottie::Property::FillOpacity>(key,
+        [&](const rlottie::FrameInfo& info) {
+                    return val;
+                });
+    }
+
+    void setStrokeOpacity(std::string key, float val) {
+        mPlayer->setValue<rlottie::Property::StrokeOpacity>(key,
                 [&](const rlottie::FrameInfo& info) {
                     return val;
                 });
@@ -114,5 +121,7 @@ EMSCRIPTEN_BINDINGS(rlottie_bindings)
         .function("load", &RlottieWasm::load, allow_raw_pointers())
         .function("frames", &RlottieWasm::frames)
         .function("render", &RlottieWasm::render)
-        .function("set_fill_opacity", &RlottieWasm::setFillOpacity);
+        .function("set_fill_opacity", &RlottieWasm::setFillOpacity)
+        .function("set_stroke_opacity", &RlottieWasm::setStrokeOpacity);
 }
+#endif
