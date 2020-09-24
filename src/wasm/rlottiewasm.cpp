@@ -63,6 +63,20 @@ public:
                 });
     }
 
+    void setTrRotation(std::string key, float degree) {
+        mPlayer->setValue<rlottie::Property::TrRotation>(key,
+                [&](const rlottie::FrameInfo& info) {
+                    return degree;
+                });
+    }  
+
+    void setTrOpacity(std::string key, float opacity) {
+        mPlayer->setValue<rlottie::Property::TrOpacity>(key,
+                [&](const rlottie::FrameInfo& info) {
+                    return opacity;
+                });
+    }   
+
     ~RlottieWasm() {}
 
 private:
@@ -130,6 +144,7 @@ EMSCRIPTEN_BINDINGS(rlottie_bindings)
         .function("render", &RlottieWasm::render)
         .function("set_fill_opacity", &RlottieWasm::setFillOpacity)
         .function("set_stroke_opacity", &RlottieWasm::setStrokeOpacity)
-        .function("set_stroke_width", &RlottieWasm::setStrokeWidth);
+        .function("set_stroke_width", &RlottieWasm::setStrokeWidth)
+        .function("set_tr_rotation", &RlottieWasm::setTrRotation)
+        .function("set_tr_opacity", &RlottieWasm::setTrOpacity);
 }
-#endif
