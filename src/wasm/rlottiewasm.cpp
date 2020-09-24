@@ -76,6 +76,42 @@ public:
                           return rlottie::Size(w, h);
                  });
     }
+  
+    void setFillOpacity(std::string key, float opacity) {
+        mPlayer->setValue<rlottie::Property::FillOpacity>(key,
+                [&](const rlottie::FrameInfo& info) {
+                    return opacity;
+                });
+    }
+
+    void setStrokeOpacity(std::string key, float opacity) {
+        mPlayer->setValue<rlottie::Property::StrokeOpacity>(key,
+                [&](const rlottie::FrameInfo& info) {
+            return opacity;
+        });
+    }
+
+    void setStrokeWidth(std::string key, float width) {
+        mPlayer->setValue<rlottie::Property::StrokeWidth>(key,
+                [&](const rlottie::FrameInfo& info) {
+                    return width;
+                });
+    }
+
+    void setTrRotation(std::string key, float degree) {
+        mPlayer->setValue<rlottie::Property::TrRotation>(key,
+                [&](const rlottie::FrameInfo& info) {
+                    return degree;
+                });
+    }  
+
+    void setTrOpacity(std::string key, float opacity) {
+        mPlayer->setValue<rlottie::Property::TrOpacity>(key,
+                [&](const rlottie::FrameInfo& info) {
+                    return opacity;
+                });
+    }   
+
     ~RlottieWasm() {}
 
 private:
@@ -144,5 +180,10 @@ EMSCRIPTEN_BINDINGS(rlottie_bindings)
         .function("set_fill_color", &RlottieWasm::setFillColor)
         .function("set_stroke_color", &RlottieWasm::setStrokeColor)
         .function("set_tr_anchor", &RlottieWasm::setTrAnchor)
-        .function("set_tr_scale", &RlottieWasm::setTrScale);
+        .function("set_tr_scale", &RlottieWasm::setTrScale)
+        .function("set_fill_opacity", &RlottieWasm::setFillOpacity)
+        .function("set_stroke_opacity", &RlottieWasm::setStrokeOpacity)
+        .function("set_stroke_width", &RlottieWasm::setStrokeWidth)
+        .function("set_tr_rotation", &RlottieWasm::setTrRotation)
+        .function("set_tr_opacity", &RlottieWasm::setTrOpacity);
 }
