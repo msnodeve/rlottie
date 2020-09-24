@@ -41,6 +41,14 @@ public:
 
         return val(typed_memory_view(mWidth * mHeight * 4, mBuffer.get()));
     }
+
+    std::string setFillColor(std::string key, float r, float g, float b){
+        mPlayer->setValue<rlottie::Property::FillColor>(key,
+                [&](const rlottie::FrameInfo& info){
+                    return rlottie::Color(r, g, b);
+                });
+        return key;
+    }
     ~RlottieWasm() {}
 
 private:
@@ -105,5 +113,6 @@ EMSCRIPTEN_BINDINGS(rlottie_bindings)
         .constructor(&RlottieWasm::create)
         .function("load", &RlottieWasm::load, allow_raw_pointers())
         .function("frames", &RlottieWasm::frames)
-        .function("render", &RlottieWasm::render);
+        .function("render", &RlottieWasm::render)
+        .function("set_fill_color", &RlottieWasm::setFillColor);
 }
