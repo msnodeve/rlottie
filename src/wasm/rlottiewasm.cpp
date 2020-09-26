@@ -44,70 +44,70 @@ public:
 
     void setFillColor(std::string key, float r, float g, float b){
         mPlayer->setValue<rlottie::Property::FillColor>(key,
-                [&](const rlottie::FrameInfo& info){
+                [r,g,b](const rlottie::FrameInfo& info){
                     return rlottie::Color(r, g, b);
                 });
     }
   
     void setFillOpacity(std::string key, float opacity) {
         mPlayer->setValue<rlottie::Property::FillOpacity>(key,
-                [&](const rlottie::FrameInfo& info) {
+                [opacity](const rlottie::FrameInfo& info) {
                     return opacity;
                 });
     }
 
     void setStrokeColor(std::string key, float r, float g, float b){
         mPlayer->setValue<rlottie::Property::StrokeColor>(key,
-                [&](const rlottie::FrameInfo& info){
+                [r,g,b](const rlottie::FrameInfo& info){
                     return rlottie::Color(r, g, b);
                 });
     }
 
     void setStrokeOpacity(std::string key, float opacity) {
         mPlayer->setValue<rlottie::Property::StrokeOpacity>(key,
-                [&](const rlottie::FrameInfo& info) {
+                [opacity](const rlottie::FrameInfo& info) {
             return opacity;
         });
     }
 
     void setStrokeWidth(std::string key, float width) {
         mPlayer->setValue<rlottie::Property::StrokeWidth>(key,
-                [&](const rlottie::FrameInfo& info) {
+                [width](const rlottie::FrameInfo& info) {
                     return width;
                 });
     }
 
     void setTrAnchor(std::string key, float x, float y){
         mPlayer->setValue<rlottie::Property::TrAnchor>(key,
-                [&](const rlottie::FrameInfo& info) {
+                [x,y](const rlottie::FrameInfo& info) {
                         return rlottie::Point(x, y);
                 });
     }
 
     void setTrPosition(std::string key, float x, float y){
         mPlayer->setValue<rlottie::Property::TrPosition>(key,
-                [&](const rlottie::FrameInfo& info) {
+                [x,y](const rlottie::FrameInfo& info) {
                         return rlottie::Point(x, y);
                 });
     }
 
     void setTrScale(std::string key, float w, float h){
         mPlayer->setValue<rlottie::Property::TrScale>(key,
-                [&](const rlottie::FrameInfo& info) {
+                [w,h](const rlottie::FrameInfo& info) {
                           return rlottie::Size(w, h);
                  });
     }
 
     void setTrRotation(std::string key, float degree) {
         mPlayer->setValue<rlottie::Property::TrRotation>(key,
-                [&](const rlottie::FrameInfo& info) {
+                [degree](const rlottie::FrameInfo& info) {
                     return degree;
                 });
     }  
 
     void setTrOpacity(std::string key, float opacity) {
         mPlayer->setValue<rlottie::Property::TrOpacity>(key,
-                [&](const rlottie::FrameInfo& info) {
+                [opacity](const rlottie::FrameInfo& info) {
                     return opacity;
                 });
     }   
