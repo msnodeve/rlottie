@@ -189,6 +189,9 @@ public:
                 });
     }
 
+    std::string getBasicResource(){
+        return resource;
+    }
     ~RlottieWasm() {}
 
 private:
@@ -273,5 +276,6 @@ EMSCRIPTEN_BINDINGS(rlottie_bindings)
         .function("set_tr_position_slow", &RlottieWasm::setTrPositionSlow)
         .function("set_tr_scale_slow", &RlottieWasm::setTrScaleSlow)
         .function("set_tr_rotation_slow", &RlottieWasm::setTrRotationSlow)
-        .function("set_tr_opacity_slow", &RlottieWasm::setTrOpacitySlow);
+        .function("set_tr_opacity_slow", &RlottieWasm::setTrOpacitySlow)
+        .function("get_basic_resource", &RlottieWasm::getBasicResource);
 }
