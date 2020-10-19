@@ -150,6 +150,7 @@ EMSCRIPTEN_BINDINGS(rlottie_bindings)
         .function("load", &RlottieWasm::load, allow_raw_pointers())
         .function("frames", &RlottieWasm::frames)
         .function("render", &RlottieWasm::render)
+<<<<<<< HEAD
         .function("setFillColor", &RlottieWasm::setFillColor)
         .function("setFillOpacity", &RlottieWasm::setFillOpacity)
         .function("setStrokeColor", &RlottieWasm::setStrokeColor)
@@ -161,4 +162,17 @@ EMSCRIPTEN_BINDINGS(rlottie_bindings)
         .function("setTrRotation", &RlottieWasm::setTrRotation)
         .function("setTrOpacity", &RlottieWasm::setTrOpacity)
         .function("getBasicResource", &RlottieWasm::getBasicResource);
+=======
+        .function("set_fill_color", &RlottieWasm::setFillColor)
+        .function("set_fill_opacity", &RlottieWasm::setFillOpacity)
+        .function("set_stroke_color", &RlottieWasm::setStrokeColor)
+        .function("set_stroke_opacity", &RlottieWasm::setStrokeOpacity)
+        .function("set_stroke_width", &RlottieWasm::setStrokeWidth)
+        .function("set_tr_anchor", &RlottieWasm::setTrAnchor)
+        .function("set_tr_position", &RlottieWasm::setTrPosition)
+        .function("set_tr_scale", &RlottieWasm::setTrScale)
+        .function("set_tr_rotation", &RlottieWasm::setTrRotation)
+        .function("set_tr_opacity", &RlottieWasm::setTrOpacity)
+        .function("get_basic_resource", &RlottieWasm::getBasicResource);
+>>>>>>> 4a4dabae0b041df8ca2298d7797a24f75f98614a
 }
